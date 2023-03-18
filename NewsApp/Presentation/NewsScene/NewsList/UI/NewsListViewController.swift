@@ -73,7 +73,13 @@ final class NewsListViewController: UIViewController {
 
 }
 
-extension NewsListViewController: NewsListViewUpdatedProtocol {
+extension NewsListViewController: NewsListViewUpdatedProtocol, Alertable {
+    func error(with error: String) {
+        guard !error.isEmpty else {return}
+        showAlert(title: viewModel.errorTitle, message: error,completion: nil)
+    }
+    
+    
     func updatedTableView() {
         tableView.reloadData()
     }

@@ -15,7 +15,7 @@ final class NewsListUseCase: NewsListUseCaseProtocol {
         self.api = api
     }
 
-    func getNewsStartup(completionHandler: @escaping (Result<NewsModel, Error>) -> Void) {
+    func getNewsStartup(completionHandler: @escaping (Result<NewsModel, ErrorAPINew>) -> Void) {
         api.getNewsStartup { response in
             completionHandler(response)
         }

@@ -8,12 +8,12 @@
 import Foundation
 
 protocol RepositoriesAPIProtocol {
-    func getNewsStartup(completionHandler: @escaping (Result<NewsModel, Error>) -> Void)
+    func getNewsStartup(completionHandler: @escaping (Result<NewsModel, ErrorAPINew>) -> Void)
 }
 
 class RepositoriesAPI: BaseAPI<RepositoriesNetworking>, RepositoriesAPIProtocol {
     
-    func getNewsStartup(completionHandler: @escaping (Result<NewsModel, Error>) -> Void) {
+    func getNewsStartup(completionHandler: @escaping (Result<NewsModel, ErrorAPINew>) -> Void) {
         fetchData(target: .getNewsStartup, responseClass: NewsModel.self) { result in
             completionHandler(result)
         }

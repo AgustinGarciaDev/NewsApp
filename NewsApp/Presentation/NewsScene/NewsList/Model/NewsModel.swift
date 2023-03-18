@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct NewsModel: Decodable {
+struct NewsModel: Decodable, Equatable {
     let category: String
     let data: [InfoNew]
     let success: Bool?
 }
 
 // MARK: - InfoNews
-struct InfoNew: Decodable {
+struct InfoNew: Decodable, Equatable {
     let author, content: String?
     let date: String?
     let id: String?
