@@ -14,11 +14,11 @@ final class NewsListUseCase: NewsListUseCaseProtocol {
     init(api: RepositoriesAPIProtocol) {
         self.api = api
     }
-    
+
     func getNewsStartup(completionHandler: @escaping (Result<NewsModel, Error>) -> Void) {
         api.getNewsStartup { response in
             completionHandler(response)
         }
     }
-    
+
 }

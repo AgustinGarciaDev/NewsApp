@@ -9,21 +9,21 @@ import Foundation
 
 
 final class NewsListViewModel: NewsListViewModelProtocol {
-  
+
     var newsList: [InfoNew] = [InfoNew]()
     var coordinator: Coordinator?
     var view: NewsListViewUpdatedProtocol?
-    
+
     private var useCase: NewsListUseCaseProtocol
- 
+
     init(useCase: NewsListUseCaseProtocol) {
         self.useCase = useCase
     }
-    
+
     func getNewsList() -> [InfoNew] {
-       return newsList
+        return newsList
     }
-    
+
     func requestNewsStartup() {
         LoadingView.show()
         useCase.getNewsStartup { [weak self] result in
@@ -35,11 +35,11 @@ final class NewsListViewModel: NewsListViewModelProtocol {
                 self?.view?.updatedTableView()
             case .failure(let error):
                 LoadingView.hide()
-               print(error)
+                print(error)
             }
         }
     }
-    
+
     func didSelectItem(at index: Int) {
         coordinator?.showNewDetail(with: newsList[index])
     }

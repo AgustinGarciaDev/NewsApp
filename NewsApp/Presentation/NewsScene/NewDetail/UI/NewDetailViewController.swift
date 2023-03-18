@@ -8,12 +8,12 @@
 import UIKit
 
 final class NewDetailViewController: UIViewController {
-    
+
     var viewModel: NewDetailViewModelProtocol!
-    
+
     var newUrl: String?
     var newUrlTwitter: String?
-    
+
     lazy private var titleNewLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +23,7 @@ final class NewDetailViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    
+
     lazy private var dateNewLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +32,7 @@ final class NewDetailViewController: UIViewController {
         label.textAlignment = .left
         return label
     }()
-    
+
     lazy private var contentNewLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +42,7 @@ final class NewDetailViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    
+
     lazy private var readMoreWebButton: UIButton = {
         let button = UIButton()
         button.setTitle("Read More in Web", for: .normal)
@@ -51,7 +51,7 @@ final class NewDetailViewController: UIViewController {
         button.addTarget(self, action: #selector(openURL), for: .touchUpInside)
         return button
     }()
-    
+
     lazy private var readMoreTwitterButton: UIButton = {
         let button = UIButton()
         button.setTitle("Read More in Twitter", for: .normal)
@@ -60,7 +60,7 @@ final class NewDetailViewController: UIViewController {
         button.addTarget(self, action: #selector(openURLInTwitter), for: .touchUpInside)
         return button
     }()
-    
+
     lazy private var contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.addArrangedSubview(titleNewLabel)
@@ -74,23 +74,23 @@ final class NewDetailViewController: UIViewController {
         stackView.distribution = .fillProportionally
         return stackView
     }()
-    
+
     static func create(with viewModel: NewDetailViewModelProtocol) -> NewDetailViewController {
         let view = NewDetailViewController()
         view.viewModel = viewModel
         return view
     }
-    
+
     override func viewDidLoad() {
         builHierarchy()
         setupConstraints()
         configurationInitial()
     }
-    
+
     func builHierarchy() {
         view.addSubview(contentStackView)
     }
-    
+
     func setupConstraints() {
         let safeArea = self.view.safeAreaLayoutGuide
 
@@ -100,26 +100,26 @@ final class NewDetailViewController: UIViewController {
             contentStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
         ])
     }
-    
+
     func configurationInitial() {
         navigationController?.navigationBar.isHidden = false
         view.backgroundColor = .white
         configurationUI()
     }
-    
+
     @objc func openURL() {
-        guard let newUrl = newUrl else {return}
+        guard let newUrl = newUrl else { return }
         openSafariURL(webUrl: newUrl)
     }
-    
+
     @objc func openURLInTwitter() {
-        guard let newUrlTwitter = newUrlTwitter else {return}
+        guard let newUrlTwitter = newUrlTwitter else { return }
         openSafariURL(webUrl: String(newUrlTwitter.dropLast()))
     }
 }
 
 
-extension NewDetailViewController: NewDetailViewUpdatedProtocol {
+extension NewDetailViewController {
     func configurationUI() {
         let new = viewModel.configurationUI()
         titleNewLabel.text = new.title

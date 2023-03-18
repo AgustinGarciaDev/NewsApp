@@ -10,10 +10,5 @@ import Foundation
 
 protocol NewDetailViewModelProtocol {
     var coordinator: Coordinator? {get set}
-    var view: NewDetailViewUpdatedProtocol? {get set}
     func configurationUI() -> InfoNew
-}
-
-protocol NewDetailViewUpdatedProtocol {
-   // func configurationUI(with new: InfoNew)
 }

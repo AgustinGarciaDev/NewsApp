@@ -8,20 +8,18 @@
 import Foundation
 
 
-class NewDetailViewModel: NewDetailViewModelProtocol {
-    
+class NewDetailViewModel: NewDetailViewModelProtocol {    
+
     var coordinator: Coordinator?
-    
+
     var infoNew: InfoNew
-    
-    var view: NewDetailViewUpdatedProtocol?
 
     init(infoNew: InfoNew) {
         self.infoNew = infoNew
     }
-    
+
     func configurationUI() -> InfoNew {
         return infoNew
     }
-  
+
 }
